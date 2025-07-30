@@ -1,5 +1,6 @@
 import { Button, Card, Col, Container } from "react-bootstrap";
 import { useState } from "react";
+import CommentArea from "./CommentArea";
 
 function SingleBook({ book }) {
   const [selected, setSelected] = useState(false);
@@ -19,6 +20,16 @@ function SingleBook({ book }) {
             <Card.Title>{book.title}</Card.Title>
             <Card.Text>Prezzo: {book.price}</Card.Text>
             <Button variant="primary">Maggiori dettagli</Button>
+            <Button
+              variat={selected ? "danger" : "success"}
+              onClick={() => setSelected(!selected)}
+              className="mt-2"
+              variant="success"
+            >
+              {selected ? "Nascondi recensioni" : "Mostra recensioni"}
+            </Button>
+            {/*Rendering condizionale*/}
+            {selected && <CommentArea book={book} />}
           </Card.Body>
         </Card>
       </Container>

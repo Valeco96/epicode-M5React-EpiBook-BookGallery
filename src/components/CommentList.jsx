@@ -1,0 +1,20 @@
+{
+  /*Mostra le recensioni ricevute dall'API qui*/
+}
+import SingleComment from "./SingleComment";
+
+function CommentList({ comments }) {
+  if (comments === 0) {
+    return <p>Nessuna recensione trovata.</p>;
+  }
+
+  return (
+    <div className="mt-2">
+      {comments.map((c) => (
+        <SingleComment key={c._id} comment={c} />
+      ))}
+    </div>
+  );
+}
+
+export default CommentList;
