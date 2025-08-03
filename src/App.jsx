@@ -11,9 +11,10 @@ import horror from "./data/horror.json";
 import romance from "./data/romance.json";
 import scifi from "./data/scifi.json";
 import history from "./data/history.json";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { SelectedProvider } from "./context/selectedContext";
 import { ThemeProvider } from "./context/ThemeContext";
+import ThemeToggleButton from "./components/ThemeToggleButton";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import { BrowserRouter, Routes, Route } from "react-router";
 
@@ -29,7 +30,7 @@ function App() {
   const [category, setCategory] = useState(`Fantasy`);
   const [searchValue, setSearchValue] = useState(``);
   const [filteredBooks, setFilteredBooks] = useState(bookGenre[category]);
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState("light");
   const [textColor, setTextColor] = useState("white");
   const handleSearch = (e) => {
     setSearchValue(e.target.value);
@@ -43,15 +44,10 @@ function App() {
     setCategory(e.target.value);
     setFilteredBooks(bookGenre[e.target.value]);
   };
-  function toggleTheme() {
-    if (theme == "dark") {
-      setTheme("light");
-      setTextColor("black");
-    } else {
-      setTheme("dark");
-      setTextColor("white");
-    }
-  }
+
+  useEffect(() => {
+    document.body.dataset["bsTheme"] = theme;
+  }, [theme]);
 
   return (
     <>
@@ -65,8 +61,12 @@ function App() {
           handleCategory={handleCategory}
           bookGenre={bookGenre}
         />
-        <ThemeProvider>
+        <ThemeProvider value={{ theme, textColor }}>
           <Welcome />
+          {/* Pulsante globale per cambiare tema */}
+          <div className="text-center my-3">
+            <ThemeToggleButton />
+          </div>
           <SelectedProvider>
             <Container fluid className="my-4">
               <Routes>
