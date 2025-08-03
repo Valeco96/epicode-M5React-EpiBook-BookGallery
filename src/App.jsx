@@ -3,7 +3,9 @@ import MyNav from "./components/MyNav";
 import MyFooter from "./components/MyFooter";
 import Welcome from "./components/Welcome";
 import AllBooks from "./components/AllBooks";
+import BookDetails from "./components/BookDetails";
 import CommentArea from "./components/CommentArea";
+import NotFound from "./components/NotFound";
 import fantasy from "./data/fantasy.json";
 import horror from "./data/horror.json";
 import romance from "./data/romance.json";
@@ -13,6 +15,7 @@ import { useState } from "react";
 import { SelectedProvider } from "./context/selectedContext";
 import { ThemeProvider } from "./context/ThemeContext";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
+import { BrowserRouter, Routes, Route } from "react-router";
 
 const bookGenre = {
   Fantasy: fantasy,
@@ -26,8 +29,8 @@ function App() {
   const [category, setCategory] = useState(`Fantasy`);
   const [searchValue, setSearchValue] = useState(``);
   const [filteredBooks, setFilteredBooks] = useState(bookGenre[category]);
-  const [theme, setTheme] = useState("light");
-  const [textColor, setTextColor] = useState("dark");
+  const [theme, setTheme] = useState("dark");
+  const [textColor, setTextColor] = useState("white");
   const handleSearch = (e) => {
     setSearchValue(e.target.value);
     const books = bookGenre[category].filter((book) =>
@@ -43,45 +46,48 @@ function App() {
   function toggleTheme() {
     if (theme == "dark") {
       setTheme("light");
-      setTextColor("dark");
+      setTextColor("black");
     } else {
       setTheme("dark");
-      setTextColor("light");
+      setTextColor("white");
     }
   }
 
   return (
     <>
-      <MyNav
-        category={category}
-        setCategory={setCategory}
-        searchValue={searchValue}
-        setSearchValue={setSearchValue}
-        handleSearch={handleSearch}
-        handleCategory={handleCategory}
-        bookGenre={bookGenre}
-      />
-      <ThemeProvider>
-        <Welcome />
-        <SelectedProvider>
-          <Container fluid className="my-4">
-            <Row>
-              {/* Colonna libri */}
-              <Col md={8} className="border-end">
-                <AllBooks filteredBooks={filteredBooks} bookGenre={bookGenre} />
-              </Col>
-              {/* Colonna commenti sticky */}
-              <Col md={4}>
-                <div className="sticky-comment-area">
-                  <CommentArea TextColor={textColor} />
-                </div>
-              </Col>
-            </Row>
-          </Container>
-        </SelectedProvider>
-      </ThemeProvider>
+      <BrowserRouter>
+        <MyNav
+          category={category}
+          setCategory={setCategory}
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
+          handleSearch={handleSearch}
+          handleCategory={handleCategory}
+          bookGenre={bookGenre}
+        />
+        <ThemeProvider>
+          <Welcome />
+          <SelectedProvider>
+            <Container fluid className="my-4">
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    <AllBooks
+                      filteredBooks={filteredBooks}
+                      bookGenre={bookGenre}
+                    />
+                  }
+                />
+                <Route path="/books/:asin" element={<BookDetails />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Container>
+          </SelectedProvider>
+        </ThemeProvider>
 
-      <MyFooter />
+        <MyFooter />
+      </BrowserRouter>
     </>
   );
 }

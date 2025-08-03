@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useParams } from "react-router";
 import { useSelected } from "../context/selectedContext";
 import CommentList from "./CommentList";
 import AddComment from "./AddComment";
@@ -10,11 +11,12 @@ function CommentArea() {
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const { selected } = useSelected();
-  const asin = selected?.asin; // se selected esiste, prendi asin, altrimenti undefined
+  const { asin } = useParams();
+  // const { selected } = useSelected();
+  //  const asin = selected?.asin; // se selected esiste, prendi asin, altrimenti undefined
 
   useEffect(() => {
-    if (!selected) return;
+    if (!asin) return;
 
     const fetchComments = async () => {
       try {
@@ -41,23 +43,23 @@ function CommentArea() {
     };
 
     fetchComments();
-  }, [selected]); //dipende dal libro selezionato
+  }, [asin]); //dipende dal libro selezionato
 
   return (
     <div className="mt-3 p-3 border rounded bg-light h-100">
       {/* AddComment sempre in alto */}
       <div className="mb-4">
         <h6>Aggiungi una recensione:</h6>
-        <AddComment asin={asin} onNewComment={setPosts} disabled={!selected} />
+        <AddComment asin={asin} onNewComment={setPosts} disabled={!asin} />
       </div>
       {/* Commenti visibili solo se selezionato */}
-      {!selected ? (
+      {!asin ? (
         <p className="text-muted">
           Seleziona un libro per leggere le recensioni.
         </p>
       ) : (
         <>
-          <h6>Recensioni su {selected.title}:</h6>
+          <h6>Recensioni su {asin.title}:</h6>
           {isLoading && <p>Caricamento in corso...</p>}
           {error && <p>Errore nel caricamento delle recensioni.</p>}
           {!isLoading && !error && <CommentList comments={posts} />}
