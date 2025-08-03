@@ -4,16 +4,26 @@ import { useSelected } from "../context/selectedContext";
 function SingleBook({ book }) {
   const { selected, setSelected } = useSelected();
 
+  const isSelected = selected?.asin === book.asin;
+
   return (
     <>
-      <Container className="mt-4">
-        <Card className="h-100">
+      <Col sm={12} md={6} lg={3} className="mt-4">
+        <Card
+          className={
+            "h-100 " + (isSelected ? "border border-3 border-danger" : "")
+          }
+        >
           <Card.Img
-            className={selected == book.asin && "border border-3 border-danger"}
-            onClick={() => setSelected(book.asin)}
+            onClick={() => setSelected(isSelected ? null : book)}
             variant="top"
             src={book.img}
-            style={{ height: 300 }}
+            style={{
+              height: "300px",
+              width: "100%",
+              objectFit: "cover",
+              cursor: "pointer",
+            }}
           />
           <Card.Body>
             <Card.Title>{book.title}</Card.Title>
@@ -21,17 +31,13 @@ function SingleBook({ book }) {
             <Button variant="primary">Maggiori dettagli</Button>
             <Button
               variat={selected ? "danger" : "success"}
-              onClick={() => setSelected(!selected)}
-              className="mt-2"
-              variant="success"
+              onClick={() => setSelected(isSelected ? null : book)}
             >
-              {selected ? "Nascondi recensioni" : "Mostra recensioni"}
+              {isSelected ? "Nascondi recensioni" : "Mostra recensioni"}
             </Button>
-            {/*Rendering condizionale*/}
-            {/*selected && <CommentArea book={book} />*/}
           </Card.Body>
         </Card>
-      </Container>
+      </Col>
     </>
   );
 }

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 
-function AddComment({ asin, onNewComment }) {
+function AddComment({ asin, onNewComment, disabled }) {
   const apiKey =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODVhY2VjNTk2OGRlNTAwMTU1MmEzYzEiLCJpYXQiOjE3NTM4NjYwNTcsImV4cCI6MTc1NTA3NTY1N30.dDIn-eWyEgno0vui5NWN1IsUQsb1_6HGIyZ53l5mTFA";
   const [comment, setComment] = useState("");
@@ -9,6 +9,8 @@ function AddComment({ asin, onNewComment }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (disabled || !asin) return; // blocco se non c’è un libro
+    // ... codice fetch per POST
 
     const newReview = {
       comment: comment,

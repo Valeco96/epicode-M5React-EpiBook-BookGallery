@@ -19,13 +19,15 @@ function AllBooks({ filteredBooks, bookGenre }) {
   }, [filteredBooks, active]);
 
   return (
-    <>
-      {booksForPages.map((book) => (
-        <SingleBook key={book.asin} book={book} />
-      ))}
+    <Container fluid>
+      <Row>
+        {booksForPages.map((book) => (
+          <SingleBook key={book.asin} book={book} />
+        ))}
 
-      <GeneratePages pages={pageNum} active={active} setActive={setActive} />
-    </>
+        <GeneratePages pages={pageNum} active={active} setActive={setActive} />
+      </Row>
+    </Container>
   );
 }
 

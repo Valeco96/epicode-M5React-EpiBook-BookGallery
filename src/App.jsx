@@ -1,15 +1,16 @@
+import "./App.css";
 import MyNav from "./components/MyNav";
 import MyFooter from "./components/MyFooter";
 import Welcome from "./components/Welcome";
 import AllBooks from "./components/AllBooks";
 import CommentArea from "./components/CommentArea";
-import { SelectedProvider } from "./context/selectedContext";
 import fantasy from "./data/fantasy.json";
 import horror from "./data/horror.json";
 import romance from "./data/romance.json";
 import scifi from "./data/scifi.json";
 import history from "./data/history.json";
 import { useState } from "react";
+import { SelectedProvider } from "./context/selectedContext";
 import { ThemeProvider } from "./context/ThemeContext";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 
@@ -63,14 +64,17 @@ function App() {
       <ThemeProvider>
         <Welcome />
         <SelectedProvider>
-          {" "}
-          <Container className="my-4">
-            <Row className="g-2">
-              <Col xs={6} md={6}>
+          <Container fluid className="my-4">
+            <Row>
+              {/* Colonna libri */}
+              <Col md={8} className="border-end">
                 <AllBooks filteredBooks={filteredBooks} bookGenre={bookGenre} />
               </Col>
-              <Col md={6}>
-                <CommentArea TextColor={textColor} />
+              {/* Colonna commenti sticky */}
+              <Col md={4}>
+                <div className="sticky-comment-area">
+                  <CommentArea TextColor={textColor} />
+                </div>
               </Col>
             </Row>
           </Container>

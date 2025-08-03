@@ -1,0 +1,10 @@
+.sticky-comment-area {
+  position: sticky;
+  top: 80px; /* distanza dal top, puoi adattarla alla tua navbar */
+  max-height: calc(100vh - 100px); /* evita overflow oltre lo schermo */
+  overflow-y: auto; /* scroll interno se i commenti sono troppi */
+  background-color: #f8f9fa; /* colore simile a bg-light di Bootstrap */
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

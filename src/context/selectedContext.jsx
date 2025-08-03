@@ -1,17 +1,19 @@
-import { children, createContext, useState, useContext } from "react";
+import { createContext, useState, useContext } from "react";
 
-const selectedContext = createContext();
+const SelectedContext = createContext();
 
-export function selectedProvider({ children }) {
-  const [selected, setSelected] = useState();
+export function SelectedProvider({ children }) {
+  const [selected, setSelected] = useState(null);
 
   return (
-    <selectedContext.Provider value={{ selected, setSelected }}>
+    <SelectedContext.Provider value={{ selected, setSelected }}>
       {children}
-    </selectedContext.Provider>
+    </SelectedContext.Provider>
   );
 }
 
 export function useSelected() {
-  return useContext(selectedContext);
+  const context = useContext(SelectedContext);
+  console.log("Context is unselected, ", context);
+  return context;
 }
