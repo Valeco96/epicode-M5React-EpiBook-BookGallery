@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import { useSelected } from "../context/selectedContext";
 import CommentList from "./CommentList";
 import AddComment from "./AddComment";
 
@@ -49,7 +48,7 @@ function CommentArea() {
     <div className="mt-3 p-3 border rounded bg-light h-100">
       {/* AddComment sempre in alto */}
       <div className="mb-4">
-        <h6>Aggiungi una recensione:</h6>
+        <h6 className="text-black">Aggiungi una recensione:</h6>
         <AddComment asin={asin} onNewComment={setPosts} disabled={!asin} />
       </div>
       {/* Commenti visibili solo se selezionato */}
@@ -59,7 +58,7 @@ function CommentArea() {
         </p>
       ) : (
         <>
-          <h6>Recensioni su {asin.title}:</h6>
+          <h6 className="text-black mb-2">Recensioni sul libro:</h6>
           {isLoading && <p>Caricamento in corso...</p>}
           {error && <p>Errore nel caricamento delle recensioni.</p>}
           {!isLoading && !error && <CommentList comments={posts} />}

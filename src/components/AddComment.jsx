@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Alert } from "react-bootstrap";
 
 function AddComment({ asin, onNewComment, disabled }) {
   const apiKey =
@@ -10,7 +10,6 @@ function AddComment({ asin, onNewComment, disabled }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (disabled || !asin) return; // blocco se non c’è un libro
-    // ... codice fetch per POST
 
     const newReview = {
       comment: comment,
@@ -43,6 +42,7 @@ function AddComment({ asin, onNewComment, disabled }) {
       //reset del form
       setComment("");
       setRate(1);
+      <Alert>La tua recensione e' stata inviata correttamente!</Alert>;
     } catch (error) {
       console.log(error);
       alert(error.message);
@@ -50,9 +50,11 @@ function AddComment({ asin, onNewComment, disabled }) {
   };
 
   return (
-    <Form onSubmit={handleSubmit} className="mt-3">
-      <Form.Group className="mb-2">
-        <Form.Label>Scrivi la tua recensione</Form.Label>
+    <Form onSubmit={handleSubmit} className="mt-3 mx-4">
+      <Form.Group className="mb-2 ">
+        <Form.Label className="text-black">
+          📖 Scrivi la tua recensione
+        </Form.Label>
         <Form.Control
           as="textarea"
           rows={2}
@@ -64,7 +66,7 @@ function AddComment({ asin, onNewComment, disabled }) {
       </Form.Group>
 
       <Form.Group className="mb-2">
-        <Form.Label>Voto:</Form.Label>
+        <Form.Label className="text-black">🌟 Voto:</Form.Label>
         <Form.Select
           value={rate}
           onChange={(e) => setRate(Number(e.target.value))}

@@ -9,7 +9,7 @@ function CommentList({ comments }) {
   }
 
   return (
-    <div className="mt-2">
+    <div className="mt-2 mx-4">
       {comments.map((c) => (
         <SingleComment key={c._id} comment={c} />
       ))}

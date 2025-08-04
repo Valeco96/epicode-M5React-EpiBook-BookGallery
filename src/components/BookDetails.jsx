@@ -6,7 +6,7 @@ function BookDetails() {
 
   return (
     <>
-      <h1>{asin}</h1>
+      <h1>{asin.title}</h1>
       <CommentArea />
     </>
   );

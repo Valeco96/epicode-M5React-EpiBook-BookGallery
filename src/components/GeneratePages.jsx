@@ -15,7 +15,7 @@ function GeneratePages({ active, setActive, pages }) {
     );
   }
 
-  return <Pagination>{items}</Pagination>;
+  return <Pagination className="my-5 d-flex justify-content-center">{items}</Pagination>;
 }
 
 export default GeneratePages;

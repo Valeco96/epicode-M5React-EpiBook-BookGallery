@@ -12,7 +12,7 @@ function SingleBook({ book }) {
       <Col sm={12} md={6} lg={3} className="mt-4">
         <Card
           className={
-            "h-100 " // + (isSelected ? "border border-3 border-danger" : "")
+            "h-100 book-card" // + (isSelected ? "border border-3 border-danger" : "")
           }
         >
           <Card.Img
@@ -26,10 +26,13 @@ function SingleBook({ book }) {
               cursor: "pointer",
             }}
           />
-          <Card.Body>
+          <Card.Body className="d-flex flex-column">
             <Card.Title>{book.title}</Card.Title>
             <Card.Text>Prezzo: {book.price}</Card.Text>
-            <Link className="btn btn-primary" to={"/books/" + book.asin}>
+            <Link
+              className="btn btn-outline-primary mt-auto"
+              to={"/books/" + book.asin}
+            >
               Mostra dettagli
             </Link>
             {/*<Button

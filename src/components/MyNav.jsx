@@ -3,6 +3,9 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Form from "react-bootstrap/Form";
 import { NavLink } from "react-router";
+import { GiBookshelf } from "react-icons/gi";
+import { PiBooksLight } from "react-icons/pi";
+import { GiAbstract104 } from "react-icons/gi";
 
 function MyNav({
   category,
@@ -14,9 +17,15 @@ function MyNav({
   bookGenre,
 }) {
   return (
-    <Navbar expand="lg" bg="dark" data-bs-theme="dark">
+    <Navbar expand="lg" bg="dark" data-bs-theme="dark" className="py-4 border-bottom border-white">
       <Container>
-        <Navbar.Brand as={NavLink} to="/" end>
+        <Navbar.Brand
+          as={NavLink}
+          to="/"
+          end
+          className="d-flex gap-2 align-items-center"
+        >
+          <GiAbstract104 />
           EpiBooks - React
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="main-navbar" />
@@ -25,20 +34,25 @@ function MyNav({
             <Nav.Link href="#">About</Nav.Link>
             <Nav.Link href="#">Browse</Nav.Link>
           </Nav>
-          <Container className="container my-4">
-            <Form.Select
-              className="form-select mb-3"
-              value={category}
-              onChange={handleCategory}
-            >
-              {Object.keys(bookGenre).map((cat) => (
-                <option key={cat}>{cat}</option>
-              ))}
-            </Form.Select>
+          <Container className="d-flex justify-content-end gap-3">
+            <div>
+              <Form.Label className="text-white">Genere</Form.Label>
+              <Form.Select
+                className="form-select mb-4"
+                value={category}
+                onChange={handleCategory}
+              >
+                {Object.keys(bookGenre).map((cat) => (
+                  <option key={cat}>{cat}</option>
+                ))}
+              </Form.Select>
+            </div>
 
             <Form>
               <Form.Group className="mb-3">
-                <Form.Label>Ricerca</Form.Label>
+                <Form.Label className="text-white">
+                  Ricerca per titolo
+                </Form.Label>
                 <Form.Control
                   type="email"
                   placeholder="Cerca il tuo libro"

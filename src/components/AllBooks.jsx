@@ -4,7 +4,7 @@ import GeneratePages from "./GeneratePages.jsx";
 import { useState, useEffect } from "react";
 import SingleBook from "./SingleBook";
 
-function AllBooks({ filteredBooks, bookGenre }) {
+function AllBooks({ filteredBooks }) {
   const numPages = 20;
   const pageNum = Math.ceil(filteredBooks.length / numPages);
   const [active, setActive] = useState(
@@ -19,7 +19,7 @@ function AllBooks({ filteredBooks, bookGenre }) {
   }, [filteredBooks, active]);
 
   return (
-    <Container fluid>
+    <Container fluid className="px-5">
       <Row>
         {booksForPages.map((book) => (
           <SingleBook key={book.asin} book={book} />

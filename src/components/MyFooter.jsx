@@ -1,7 +1,7 @@
 function MyFooter() {
   return (
     <>
-      <footer className="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+      <footer className="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top mx-4">
         <p className="col-md-4 mb-0 text-body-secondary">© 2025 Company, Inc</p>{" "}
         <a
           href="/"
