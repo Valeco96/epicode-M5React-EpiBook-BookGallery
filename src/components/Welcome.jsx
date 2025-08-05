@@ -23,7 +23,7 @@ function Welcome() {
 
       {!show && (
         <Button className="m-4" onClick={() => setShow(true)}>
-          Mostra pop up!
+          Mostra Alert!
         </Button>
       )}
     </>

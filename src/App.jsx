@@ -53,19 +53,16 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <MyNav
-          category={category}
-          setCategory={setCategory}
-          searchValue={searchValue}
-          setSearchValue={setSearchValue}
-          handleSearch={handleSearch}
-          handleCategory={handleCategory}
-          bookGenre={bookGenre}
-        />
         <ThemeProvider value={{ theme, textColor }}>
-          <div className="text-start m-4">
-            <ThemeToggleButton />
-          </div>
+          <MyNav
+            category={category}
+            setCategory={setCategory}
+            searchValue={searchValue}
+            setSearchValue={setSearchValue}
+            handleSearch={handleSearch}
+            handleCategory={handleCategory}
+            bookGenre={bookGenre}
+          />
           <Welcome />
           {/* Pulsante globale per cambiare tema */}
 

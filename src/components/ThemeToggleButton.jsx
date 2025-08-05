@@ -7,7 +7,7 @@ function ThemeToggleButton() {
 
   return (
     <Button variant={theme === "dark" ? "light" : "dark"} onClick={toggleTheme}>
-      {theme === "dark" ? "Tema chiaro" : "Tema scuro"}
+      {theme === "dark" ? <FaSun /> : <FaMoon />}
     </Button>
   );
 }

@@ -6,6 +6,7 @@ import { NavLink } from "react-router";
 import { GiBookshelf } from "react-icons/gi";
 import { PiBooksLight } from "react-icons/pi";
 import { GiAbstract104 } from "react-icons/gi";
+import ThemeToggleButton from "./ThemeToggleButton";
 
 function MyNav({
   category,
@@ -14,9 +15,8 @@ function MyNav({
   setSearchValue,
   handleSearch,
   handleCategory,
-  bookGenre
+  bookGenre,
 }) {
-
   return (
     <Navbar
       expand="lg"
@@ -24,6 +24,7 @@ function MyNav({
       data-bs-theme="dark"
       className="py-4 border-bottom border-white"
     >
+      <ThemeToggleButton style={{ marginLeft: 15 }} />
       <Container>
         <Navbar.Brand
           as={NavLink}
@@ -36,7 +37,6 @@ function MyNav({
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="main-navbar" />
         <Navbar.Collapse id="main-navbar">
-          
           <Container className="d-flex justify-content-end gap-3">
             <div>
               <Form.Label className="text-white">Genere</Form.Label>
