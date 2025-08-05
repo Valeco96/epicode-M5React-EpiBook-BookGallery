@@ -3,7 +3,7 @@
 }
 import SingleComment from "./SingleComment";
 
-function CommentList({ comments }) {
+function CommentList({ comments, onDelete, onUpdateComment }) {
   if (comments === 0) {
     return <p>Nessuna recensione trovata.</p>;
   }
@@ -11,7 +11,12 @@ function CommentList({ comments }) {
   return (
     <div className="mt-2 mx-4">
       {comments.map((c) => (
-        <SingleComment key={c._id} comment={c} />
+        <SingleComment
+          key={c._id}
+          comment={c}
+          onUpdate={onUpdateComment}
+          onDelete={onDelete}
+        />
       ))}
     </div>
   );

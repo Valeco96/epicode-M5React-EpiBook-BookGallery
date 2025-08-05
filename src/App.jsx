@@ -17,6 +17,7 @@ import { ThemeProvider } from "./context/ThemeContext";
 import ThemeToggleButton from "./components/ThemeToggleButton";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import { BrowserRouter, Routes, Route } from "react-router";
+import UpdateComment from "./components/UpdateComment";
 
 const bookGenre = {
   Fantasy: fantasy,
@@ -62,11 +63,12 @@ function App() {
           bookGenre={bookGenre}
         />
         <ThemeProvider value={{ theme, textColor }}>
-          <Welcome />
-          {/* Pulsante globale per cambiare tema */}
-          <div className="text-center my-3">
+          <div className="text-start m-4">
             <ThemeToggleButton />
           </div>
+          <Welcome />
+          {/* Pulsante globale per cambiare tema */}
+
           <SelectedProvider>
             <Container fluid className="my-4">
               <Routes>
@@ -80,6 +82,7 @@ function App() {
                   }
                 />
                 <Route path="/books/:asin" element={<BookDetails />} />
+                <Route path="" element={<UpdateComment />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Container>

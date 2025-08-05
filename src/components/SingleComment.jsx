@@ -1,6 +1,8 @@
 import { Button, Card } from "react-bootstrap";
+import { Link } from "react-router";
+import UpdateComment from "./UpdateComment";
 
-function SingleComment({ comment }) {
+function SingleComment({ comment, onUpdate, onDelete }) {
   return (
     <>
       <Card className="mb-2 shadow-sm">
@@ -10,9 +12,14 @@ function SingleComment({ comment }) {
             {comment.author} &nbsp; | &nbsp; 🌟 Voto: {comment.rate}
           </footer>
         </Card.Body>
-      </Card>{" "}
-      <Button className="mb-1">Modifica</Button>
-      <Button className="mt-1">Elimina</Button>
+      </Card>
+      <UpdateComment className="mb-4" comment={comment} onSave={onUpdate} />
+      <Button
+        onClick={() => onDelete(comment._id)}
+        className="btn-danger m-2"
+      >
+        Elimina
+      </Button>
     </>
   );
 }

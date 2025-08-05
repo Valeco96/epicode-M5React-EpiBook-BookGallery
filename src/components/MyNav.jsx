@@ -14,10 +14,16 @@ function MyNav({
   setSearchValue,
   handleSearch,
   handleCategory,
-  bookGenre,
+  bookGenre
 }) {
+
   return (
-    <Navbar expand="lg" bg="dark" data-bs-theme="dark" className="py-4 border-bottom border-white">
+    <Navbar
+      expand="lg"
+      bg="dark"
+      data-bs-theme="dark"
+      className="py-4 border-bottom border-white"
+    >
       <Container>
         <Navbar.Brand
           as={NavLink}
@@ -30,10 +36,7 @@ function MyNav({
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="main-navbar" />
         <Navbar.Collapse id="main-navbar">
-          <Nav className="me-auto">
-            <Nav.Link href="#">About</Nav.Link>
-            <Nav.Link href="#">Browse</Nav.Link>
-          </Nav>
+          
           <Container className="d-flex justify-content-end gap-3">
             <div>
               <Form.Label className="text-white">Genere</Form.Label>

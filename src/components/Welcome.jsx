@@ -16,14 +16,14 @@ function Welcome() {
         <hr />
         <div className="d-flex justify-content-end">
           <Button onClick={() => setShow(false)} variant="outline-primary">
-            Close me
+            Chiudi
           </Button>
         </div>
       </Alert>
 
       {!show && (
         <Button className="m-4" onClick={() => setShow(true)}>
-          Show Alert
+          Mostra pop up!
         </Button>
       )}
     </>

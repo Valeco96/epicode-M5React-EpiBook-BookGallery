@@ -30,6 +30,9 @@ function AddComment({ asin, onNewComment, disabled }) {
         }
       );
 
+      if (res.ok) {
+        alert("Ora sappiamo cosa ne pensi!");
+      }
       if (!res.ok) {
         throw new Error("Errore nell'invio della recensione");
       }
@@ -42,7 +45,6 @@ function AddComment({ asin, onNewComment, disabled }) {
       //reset del form
       setComment("");
       setRate(1);
-      <Alert>La tua recensione e' stata inviata correttamente!</Alert>;
     } catch (error) {
       console.log(error);
       alert(error.message);
